@@ -38,20 +38,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        RecyclerView recyclerView = findViewById(R.id.recyclerview_users);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        recyclerView.setHasFixedSize(true);
+        RecyclerView recyclerView = findViewById(R.id.recyclerview_users);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
 
-//        final UserAdapter adapter = new UserAdapter();
-//        recyclerView.setAdapter(adapter);
+        final UserAdapter adapter = new UserAdapter();
+        recyclerView.setAdapter(adapter);
 
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
         userViewModel.getAllUsers().observe(this, new Observer<List<User>>() {
             @Override
             public void onChanged(List<User> users) {
                 //update RecyclerView
-              //  adapter.setUsers(users);
-                //Toast.makeText(MainActivity.this, "onChange", Toast.LENGTH_SHORT).show();
+                adapter.setUsers(users);
+                Toast.makeText(MainActivity.this, "onChange", Toast.LENGTH_SHORT).show();
             }
         });
     }
