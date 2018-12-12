@@ -19,10 +19,10 @@ public class SucursalViewModel extends AndroidViewModel {
     public SucursalViewModel(Application application){
         super(application);
         mRepository = new SucursalRepository(application);
-        mRepository.getAllSucursales();
+        mAllSucursales = mRepository.getAllSucursales();
     }
 
-    LiveData<List<Sucursal>> getAllSucursales() { return mAllSucursales; }
+    public LiveData<List<Sucursal>> getAllSucursales() { return mAllSucursales; }
 
     public void insert(Sucursal sucursal) { mRepository.insert(sucursal); }
 }

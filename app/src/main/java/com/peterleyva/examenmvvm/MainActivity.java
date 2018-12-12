@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.peterleyva.examenmvvm.activities.AdministratorActivity;
 import com.peterleyva.examenmvvm.activities.UserRegisterActivity;
 import com.peterleyva.examenmvvm.model.User;
 import com.peterleyva.examenmvvm.viewmodel.UserViewModel;
@@ -47,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
                 {
                     if(userViewModel.getAllUsers().getValue().get(x).getEmail().compareToIgnoreCase(edittext_main_email.getText().toString()) == 0){
                         if(userViewModel.getAllUsers().getValue().get(x).getPassword().compareToIgnoreCase(edittext_main_password.getText().toString()) == 0) {
+                            Intent intent = new Intent(MainActivity.this,AdministratorActivity.class);
+                            startActivity(intent);
+
                             Toast.makeText(MainActivity.this, "Password correct", Toast.LENGTH_SHORT).show();
                         }
                         else
