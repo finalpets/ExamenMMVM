@@ -3,7 +3,7 @@ package com.peterleyva.examenmvvm.repository;
 import android.app.Application;
 import android.os.AsyncTask;
 
-import com.peterleyva.examenmvvm.User;
+import com.peterleyva.examenmvvm.model.User;
 import com.peterleyva.examenmvvm.UserDao;
 import com.peterleyva.examenmvvm.db.UserDatabase;
 

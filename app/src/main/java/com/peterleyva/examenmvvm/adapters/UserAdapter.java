@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.peterleyva.examenmvvm.R;
-import com.peterleyva.examenmvvm.User;
+import com.peterleyva.examenmvvm.model.User;
 
 import java.util.ArrayList;
 import java.util.List;

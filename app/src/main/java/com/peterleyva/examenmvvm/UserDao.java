@@ -1,5 +1,7 @@
 package com.peterleyva.examenmvvm;
 
+import com.peterleyva.examenmvvm.model.User;
+
 import java.util.List;
 
 import androidx.lifecycle.LiveData;

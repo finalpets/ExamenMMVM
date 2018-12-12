@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.peterleyva.examenmvvm.R;
-import com.peterleyva.examenmvvm.User;
+import com.peterleyva.examenmvvm.model.User;
 import com.peterleyva.examenmvvm.viewmodel.UserViewModel;
 import com.peterleyva.examenmvvm.adapters.UserAdapter;
 

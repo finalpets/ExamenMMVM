@@ -1,4 +1,4 @@
-package com.peterleyva.examenmvvm;
+package com.peterleyva.examenmvvm.model;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
