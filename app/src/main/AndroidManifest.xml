@@ -21,7 +21,7 @@
         <activity
             android:name=".activities.UserRegisterActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".activities.administrator"></activity>
+        <activity android:name=".activities.AdministratorActivity"></activity>
     </application>
 
 </manifest>

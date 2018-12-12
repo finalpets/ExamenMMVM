@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.peterleyva.examenmvvm.R;
 
-public class administrator extends AppCompatActivity {
+public class AdministratorActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
