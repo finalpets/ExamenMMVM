@@ -1,4 +1,4 @@
-package com.peterleyva.examenmvvm;
+package com.peterleyva.examenmvvm.activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.peterleyva.examenmvvm.activities.UserRegisterActivity;
+import com.peterleyva.examenmvvm.R;
+import com.peterleyva.examenmvvm.User;
+import com.peterleyva.examenmvvm.viewmodel.UserViewModel;
 import com.peterleyva.examenmvvm.adapters.UserAdapter;
 
 import java.util.List;

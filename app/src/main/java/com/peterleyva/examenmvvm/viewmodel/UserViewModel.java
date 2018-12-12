@@ -1,6 +1,9 @@
-package com.peterleyva.examenmvvm;
+package com.peterleyva.examenmvvm.viewmodel;
 
 import android.app.Application;
+
+import com.peterleyva.examenmvvm.User;
+import com.peterleyva.examenmvvm.repository.UserRepository;
 
 import java.util.List;
 
