@@ -11,15 +11,21 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.peterleyva.examenmvvm.MainActivity;
 import com.peterleyva.examenmvvm.R;
 import com.peterleyva.examenmvvm.adapters.SucursalAdapter;
 import com.peterleyva.examenmvvm.model.Sucursal;
+import com.peterleyva.examenmvvm.model.User;
 import com.peterleyva.examenmvvm.viewmodel.SucursalViewModel;
+import com.peterleyva.examenmvvm.viewmodel.UserViewModel;
 
 import java.util.List;
 
@@ -27,6 +33,9 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
 
     private DrawerLayout drawer;
     private SucursalViewModel sucursalViewModel;
+    private UserViewModel userViewModel;
+    View headerView;
+    TextView textview_navheader_userName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +49,7 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
         drawer = findViewById(R.id.drawer_administrator);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
+
         navigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,
@@ -48,6 +58,9 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
         toggle.syncState();
 
         navigationView.setCheckedItem(R.id.nav_home);
+
+        headerView = navigationView.getHeaderView(0);
+        textview_navheader_userName = headerView.findViewById(R.id.textview_navheader_userName);
 
 
 
@@ -65,6 +78,33 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
 
                 adapter.setSucursals(sucursals);
 
+
+
+            }
+        });
+
+        userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+
+        userViewModel.getAllUsers().observe(this, new Observer<List<User>>() {
+            @Override
+            public void onChanged(List<User> users) {
+
+                Intent intent = getIntent();
+                if(intent.hasExtra(MainActivity.EXTRA_ID)){
+
+                    View inflatedView = getLayoutInflater().inflate(R.layout.nav_header,null);
+
+                    for (int x=0;x<users.size();x++){
+                        if(users.get(x).getId() == intent.getExtras().getInt(MainActivity.EXTRA_ID)){
+                            String username = users.get(x).getName();
+                            textview_navheader_userName.setText(username);
+                        }
+                    }
+
+
+
+
+                }
 
             }
         });

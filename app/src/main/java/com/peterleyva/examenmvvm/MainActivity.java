@@ -26,6 +26,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public final static int ADD_USER_REQUEST = 1;
+    public static final String EXTRA_ID =
+            "com.peterleyva.examenmvvm.EXTRA_ID";
     private static final String TAG = "MainActivity";
     private UserViewModel userViewModel;
     private EditText edittext_main_email;
@@ -49,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
                     if(userViewModel.getAllUsers().getValue().get(x).getEmail().compareToIgnoreCase(edittext_main_email.getText().toString()) == 0){
                         if(userViewModel.getAllUsers().getValue().get(x).getPassword().compareToIgnoreCase(edittext_main_password.getText().toString()) == 0) {
                             Intent intent = new Intent(MainActivity.this,AdministratorActivity.class);
+
+                            intent.putExtra(EXTRA_ID,userViewModel.getAllUsers().getValue().get(x).getId());
                             startActivity(intent);
 
                             Toast.makeText(MainActivity.this, "Password correct", Toast.LENGTH_SHORT).show();
