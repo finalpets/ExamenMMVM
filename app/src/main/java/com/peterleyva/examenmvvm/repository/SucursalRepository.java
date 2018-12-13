@@ -34,12 +34,12 @@ public class SucursalRepository {
 
         private SucursalDao mAsyncTaskDao;
 
-        insertAsyncTask(SucursalDao dao) {
-            mAsyncTaskDao = dao;
+        private insertAsyncTask(SucursalDao dao) {
+            this.mAsyncTaskDao = dao;
         }
 
         @Override
-        protected Void doInBackground(final Sucursal... params) {
+        protected Void doInBackground(Sucursal... params) {
             mAsyncTaskDao.insert(params[0]);
             return null;
         }

@@ -36,6 +36,7 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
     private UserViewModel userViewModel;
     View headerView;
     TextView textview_navheader_userName;
+    private int userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +92,7 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
 
                 Intent intent = getIntent();
                 if(intent.hasExtra(MainActivity.EXTRA_ID)){
+                    userId = intent.getExtras().getInt(MainActivity.EXTRA_ID);
 
                     View inflatedView = getLayoutInflater().inflate(R.layout.nav_header,null);
 
@@ -118,6 +120,7 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
                 break;
 
             case R.id.nav_register_sucursal:
+                sucursalViewModel.insert(new Sucursal("Gameloft","Madero","Nueva",1020,21396,"Mexicali","Mexico",userId));
                 break;
             case R.id.nav_register_empleado:
                 break;

@@ -4,7 +4,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.peterleyva.examenmvvm.SucursalDao;
+import com.peterleyva.examenmvvm.UserDao;
 import com.peterleyva.examenmvvm.model.Sucursal;
+import com.peterleyva.examenmvvm.model.User;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -12,11 +14,12 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = Sucursal.class,version = 1)
+@Database(entities = {Sucursal.class,User.class} ,version = 2)
 public abstract class SucursalRoomDatabase extends RoomDatabase {
 
     private static SucursalRoomDatabase INSTANCE;
     public abstract SucursalDao sucursalDao();
+    public abstract UserDao userDao();
 
     public static SucursalRoomDatabase getDatabase(final Context context){
         if(INSTANCE == null){
@@ -51,7 +54,9 @@ public abstract class SucursalRoomDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            sucursalDao.insert(new Sucursal("Gameloft","Madero","Nueva",1020,21396,"Mexicali","Mexico"
+            sucursalDao.insert(new Sucursal("Gameloft","Madero","Nueva",1020,21396,"Mexicali","Mexico",5
+            ));
+            sucursalDao.insert(new Sucursal("Gameloft","Madero","Nueva",1020,21396,"Mexicali2","Mexico2",5
             ));
             return null;
         }
