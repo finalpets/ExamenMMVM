@@ -47,6 +47,8 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        navigationView.setCheckedItem(R.id.nav_home);
+
 
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview_administrator);
