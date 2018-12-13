@@ -3,7 +3,7 @@ package com.peterleyva.examenmvvm.viewmodel;
 import android.app.Application;
 
 import com.peterleyva.examenmvvm.model.Sucursal;
-import com.peterleyva.examenmvvm.repository.SucursalRepository;
+import com.peterleyva.examenmvvm.repository.UserRepository;
 
 import java.util.List;
 
@@ -12,17 +12,17 @@ import androidx.lifecycle.LiveData;
 
 public class SucursalViewModel extends AndroidViewModel {
 
-    private SucursalRepository mRepository;
+    private UserRepository mRepository;
 
     private LiveData<List<Sucursal>> mAllSucursales;
 
     public SucursalViewModel(Application application){
         super(application);
-        mRepository = new SucursalRepository(application);
+        mRepository = new UserRepository(application);
         mAllSucursales = mRepository.getAllSucursales();
     }
 
     public LiveData<List<Sucursal>> getAllSucursales() { return mAllSucursales; }
 
-    public void insert(Sucursal sucursal) { mRepository.insert(sucursal); }
+    public void insert(Sucursal sucursal) { mRepository.insertSucursal(sucursal); }
 }
