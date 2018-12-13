@@ -3,10 +3,10 @@ package com.peterleyva.examenmvvm.db;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.peterleyva.examenmvvm.SucursalDao;
+import com.peterleyva.examenmvvm.dao.SucursalDao;
 import com.peterleyva.examenmvvm.model.Sucursal;
 import com.peterleyva.examenmvvm.model.User;
-import com.peterleyva.examenmvvm.UserDao;
+import com.peterleyva.examenmvvm.dao.UserDao;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
