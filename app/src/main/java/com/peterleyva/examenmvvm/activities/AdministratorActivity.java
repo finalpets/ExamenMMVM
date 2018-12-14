@@ -1,6 +1,7 @@
 package com.peterleyva.examenmvvm.activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -17,6 +18,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.peterleyva.examenmvvm.MainActivity;
@@ -38,6 +40,8 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
     TextView textview_navheader_userName;
     TextView textview_navheader_companyName;
     private int userId;
+
+    public final static int NEW_SUCURSAL_REQUEST = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -139,7 +143,10 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
                 break;
 
             case R.id.nav_register_sucursal:
-                sucursalViewModel.insert(new Sucursal("Gameloft","Madero","Nueva",1020,21396,"Mexicali","Mexico",userId));
+                Intent intent = new Intent(AdministratorActivity.this,NewSucursalAcivity.class);
+                startActivityForResult(intent,NEW_SUCURSAL_REQUEST);
+                //startActivity(intent);
+                //sucursalViewModel.insert(new Sucursal("Gameloft","Madero","Nueva",1020,21396,"Mexicali","Mexico",userId));
                 break;
             case R.id.nav_register_empleado:
                 break;
@@ -150,6 +157,42 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
         drawer.closeDrawer(GravityCompat.START);
 
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode ==  NEW_SUCURSAL_REQUEST && resultCode == RESULT_OK){
+
+//            String name = data.getStringExtra(NewSucursalAcivity.EXTRA_SUCURSAL_NAME);
+//            String email = data.getStringExtra(NewSucursalAcivity.EXTRA_EMAIL);
+//            String rfc = data.getStringExtra(NewSucursalAcivity.EXTRA_RFC);
+//            String company_name = data.getStringExtra(NewSucursalAcivity.EXTRA_COMPANY);
+//            String password = data.getStringExtra(NewSucursalAcivity.EXTRA_PASSWORD);
+//            String password_confirmation = data.getStringExtra(NewSucursalAcivity.EXTRA_PASSWORD_CONFIRMATION);
+
+
+            String name = data.getStringExtra(NewSucursalAcivity.EXTRA_SUCURSAL_NAME);
+            String address = data.getStringExtra(NewSucursalAcivity.EXTRA_SUCURSAL_ADDRESS);
+            String colonia = data.getStringExtra(NewSucursalAcivity.EXTRA_SUCURSAL_COLONIA);
+            int numero_exterior = data.getIntExtra(NewSucursalAcivity.EXTRA_SUCURSAL_NUMEROEXTERIOR,0);
+            int postal_code = data.getIntExtra(NewSucursalAcivity.EXTRA_SUCURSAL_CODIGOPOSTAL,0);
+            String city = data.getStringExtra(NewSucursalAcivity.EXTRA_SUCURSAL_CIUDAD);
+            String country = data.getStringExtra(NewSucursalAcivity.EXTRA_SUCURSAL_PAIS);
+
+            Sucursal sucursal = new Sucursal(name,address,colonia,numero_exterior,postal_code,city,country,userId);
+
+            sucursalViewModel.insert(sucursal);
+
+//            User user = new User(name,email,rfc,password,company_name,password_confirmation);
+//            userViewModel.insert(user);
+            Toast.makeText(this, "Register Success", Toast.LENGTH_SHORT).show();
+
+        }
+        else {
+            Toast.makeText(this, "User not Saved", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
