@@ -1,6 +1,7 @@
 package com.peterleyva.examenmvvm.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,6 +48,11 @@ public class NewSucursalAcivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_sucursal_acivity);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("New Sucursal");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         edittext_newSucursal_name = findViewById(R.id.edittext_newSucursal_name);
@@ -102,5 +108,9 @@ public class NewSucursalAcivity extends AppCompatActivity {
         setResult(RESULT_OK,data);
         finish();
 
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

@@ -1,6 +1,7 @@
 package com.peterleyva.examenmvvm.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -60,7 +61,10 @@ public class UserRegisterActivity extends AppCompatActivity {
                 saveUser();
             }
         });
-        setTitle("Register");
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("New User");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void saveUser(){
