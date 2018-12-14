@@ -36,6 +36,7 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
     private UserViewModel userViewModel;
     View headerView;
     TextView textview_navheader_userName;
+    TextView textview_navheader_companyName;
     private int userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,8 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
 
         headerView = navigationView.getHeaderView(0);
         textview_navheader_userName = headerView.findViewById(R.id.textview_navheader_userName);
+        textview_navheader_companyName = headerView.findViewById(R.id.textview_navheader_companyName);
+
 
 
 
@@ -71,7 +74,15 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
 
         final SucursalAdapter adapter = new SucursalAdapter();
         recyclerView.setAdapter(adapter);
+
         sucursalViewModel = ViewModelProviders.of(this).get(SucursalViewModel.class);
+
+        Intent intent = getIntent();
+        if(intent.hasExtra(MainActivity.EXTRA_ID))
+            userId = intent.getExtras().getInt(MainActivity.EXTRA_ID);
+
+//        List<Sucursal> sucursals = sucursalViewModel.getAllSucursales_ByUserId(userId);
+//            adapter.setSucursals(sucursals);
 
         sucursalViewModel.getAllSucursales().observe(this, new Observer<List<Sucursal>>() {
             @Override
@@ -86,30 +97,38 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
 
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
 
-        userViewModel.getAllUsers().observe(this, new Observer<List<User>>() {
+        userViewModel.getUserById(userId).observe(this, new Observer<User>() {
             @Override
-            public void onChanged(List<User> users) {
-
-                Intent intent = getIntent();
-                if(intent.hasExtra(MainActivity.EXTRA_ID)){
-                    userId = intent.getExtras().getInt(MainActivity.EXTRA_ID);
-
-                    View inflatedView = getLayoutInflater().inflate(R.layout.nav_header,null);
-
-                    for (int x=0;x<users.size();x++){
-                        if(users.get(x).getId() == intent.getExtras().getInt(MainActivity.EXTRA_ID)){
-                            String username = users.get(x).getName();
-                            textview_navheader_userName.setText(username);
-                        }
-                    }
-
-
-
-
-                }
-
+            public void onChanged(User user) {
+                textview_navheader_userName.setText(user.getName());
+                textview_navheader_companyName.setText(user.getCompany_name());
             }
         });
+
+//        userViewModel.getAllUsers().observe(this, new Observer<List<User>>() {
+//            @Override
+//            public void onChanged(List<User> users) {
+//
+//                Intent intent = getIntent();
+//                if(intent.hasExtra(MainActivity.EXTRA_ID)){
+//                    userId = intent.getExtras().getInt(MainActivity.EXTRA_ID);
+//
+//                    //View inflatedView = getLayoutInflater().inflate(R.layout.nav_header,null);
+//
+//                    for (int x=0;x<users.size();x++){
+//                        if(users.get(x).getId() == intent.getExtras().getInt(MainActivity.EXTRA_ID)){
+//                            String username = users.get(x).getName();
+//                            textview_navheader_userName.setText(username);
+//                        }
+//                    }
+//
+//
+//
+//
+//                }
+//
+//            }
+//        });
     }
 
     @Override

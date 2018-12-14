@@ -30,5 +30,5 @@ public interface UserDao {
     LiveData<List<User>> getAllUsers();
 
     @Query("SELECT * FROM user_table WHERE id = :id")
-    User getUserById(int id);
+    LiveData<User> getUserById(int id);
 }

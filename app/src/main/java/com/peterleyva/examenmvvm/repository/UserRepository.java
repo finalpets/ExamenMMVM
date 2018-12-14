@@ -1,6 +1,7 @@
 package com.peterleyva.examenmvvm.repository;
 
 import android.app.Application;
+import android.content.Intent;
 import android.os.AsyncTask;
 
 import com.peterleyva.examenmvvm.dao.SucursalDao;
@@ -19,6 +20,7 @@ public class UserRepository {
     private SucursalDao sucursalDao;
     private LiveData<List<User>> allUsers;
     private LiveData<List<Sucursal>> allSucursales;
+    private List<Sucursal> allSucursales_ByUserId;
 
     public UserRepository(Application application){
         UserDatabase database = UserDatabase.getInstance(application);
@@ -26,6 +28,7 @@ public class UserRepository {
         sucursalDao = database.sucursalDao();
         allUsers = userDao.getAllUsers();
         allSucursales = sucursalDao.getAllSucursales();
+        //allSucursales_ByUserId = sucursalDao.getAllSucursales_ByUserId(id)
 
     }
 
@@ -53,6 +56,11 @@ public class UserRepository {
 
     public LiveData<List<User>> getAllUsers() {
         return allUsers;
+    }
+
+    public LiveData<User> getUser(int userId) {
+        // Returns a LiveData object directly from the database.
+        return userDao.getUserById(userId);
     }
 
     private static class InsertUserAsyncTask extends AsyncTask<User,Void ,Void>{
@@ -125,6 +133,11 @@ public class UserRepository {
         return allSucursales;
     }
 
+
+//    public List<Sucursal> getAllSucursales_ByUserId(Integer id) {
+//        return new getAllSucursales_ByUserId(sucursalDao).execute(id);
+//        //return sucursalDao.getAllSucursales_ByUserId(id);
+//    }
     /// ========== Sucursales ===========
     private static class InsertSucursalAsyncTask extends AsyncTask<Sucursal, Void, Void> {
 
@@ -137,6 +150,22 @@ public class UserRepository {
         @Override
         protected Void doInBackground(Sucursal... params) {
             mAsyncTaskDao.insert(params[0]);
+            return null;
+        }
+    }
+
+    private static class getAllSucursales_ByUserId extends AsyncTask<Integer, Void, Void> {
+
+        private SucursalDao mAsyncTaskDao;
+
+        private getAllSucursales_ByUserId(SucursalDao dao) {
+            this.mAsyncTaskDao = dao;
+        }
+
+
+        @Override
+        protected Void doInBackground(Integer... integers) {
+            mAsyncTaskDao.getAllSucursales_ByUserId(integers[0]);
             return null;
         }
     }
