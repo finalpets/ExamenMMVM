@@ -89,7 +89,7 @@ public class UserRegisterActivity extends AppCompatActivity {
             }
         });
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("New User");
+        toolbar.setTitle("Sign Up");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
