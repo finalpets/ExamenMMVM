@@ -160,21 +160,21 @@ public class UserRepository {
         }
     }
 
-    private static class getAllSucursales_ByUserId extends AsyncTask<Integer, Void, Void> {
-
-        private SucursalDao mAsyncTaskDao;
-
-        private getAllSucursales_ByUserId(SucursalDao dao) {
-            this.mAsyncTaskDao = dao;
-        }
-
-
-        @Override
-        protected Void doInBackground(Integer... integers) {
-            mAsyncTaskDao.getAllSucursales_ByUserId(integers[0]);
-            return null;
-        }
-    }
+//    private static class getAllSucursales_ByUserId extends AsyncTask<Integer, Void, Void> {
+//
+//        private SucursalDao mAsyncTaskDao;
+//
+//        private getAllSucursales_ByUserId(SucursalDao dao) {
+//            this.mAsyncTaskDao = dao;
+//        }
+//
+//
+//        @Override
+//        protected Void doInBackground(Integer... integers) {
+//            mAsyncTaskDao.getAllSucursales_ByUserId(integers[0]);
+//            return null;
+//        }
+//    }
 
 
 
