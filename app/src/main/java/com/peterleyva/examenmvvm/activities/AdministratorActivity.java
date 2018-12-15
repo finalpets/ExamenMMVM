@@ -137,18 +137,20 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
+        Intent intent;
         switch (menuItem.getItemId()){
             case R.id.nav_home:
                 break;
 
             case R.id.nav_register_sucursal:
-                Intent intent = new Intent(AdministratorActivity.this,NewSucursalAcivity.class);
+                intent = new Intent(AdministratorActivity.this,NewSucursalAcivity.class);
                 startActivityForResult(intent,NEW_SUCURSAL_REQUEST);
                 //startActivity(intent);
                 //sucursalViewModel.insert(new Sucursal("Gameloft","Madero","Nueva",1020,21396,"Mexicali","Mexico",userId));
                 break;
             case R.id.nav_register_empleado:
+                intent = new Intent(AdministratorActivity.this,EmployeeRegisterActivity.class);
+                startActivity(intent);
                 break;
             case R.id.nav_logout:
                 finish();

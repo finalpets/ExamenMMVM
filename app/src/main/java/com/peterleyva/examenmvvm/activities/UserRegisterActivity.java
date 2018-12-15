@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -39,6 +40,7 @@ public class UserRegisterActivity extends AppCompatActivity {
     private EditText edittext_userRegister_passwordConfirmation;
 
     private Button button_userRegister_register;
+    private Button button_userRegister_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +54,33 @@ public class UserRegisterActivity extends AppCompatActivity {
         edittext_userRegister_password = findViewById(R.id.edittext_userRegister_password);
         edittext_userRegister_passwordConfirmation = findViewById(R.id.edittext_userRegister_passwordConfirmation);
 
+        edittext_userRegister_name.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                if (hasFocus) {
+                    // If view having focus.
+
+                } else {
+//                    edittext_userRegister_name.getText().toString().isEmpty();
+//                    edittext_userRegister_name.setHighlightColor(Color.RED);
+                    //edittext_userRegister_name.setBackgroundColor(Color.RED);
+                    // If view not having focus. You can validate here
+                }
+
+            }
+        });
+
 
         button_userRegister_register = findViewById(R.id.button_userRegister_register);
+        button_userRegister_back = findViewById(R.id.button_userRegister_back);
+
+        button_userRegister_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         button_userRegister_register.setOnClickListener(new View.OnClickListener() {
             @Override

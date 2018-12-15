@@ -22,14 +22,17 @@
             android:name=".activities.UserRegisterActivity"
             android:launchMode="singleTop"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".activities.AdministratorActivity"
-            android:theme="@style/AppTheme.StatusBar"
+        <activity
+            android:name=".activities.AdministratorActivity"
             android:launchMode="singleTop"
-            />
+            android:theme="@style/AppTheme.StatusBar" />
         <activity
             android:name=".activities.NewSucursalAcivity"
             android:launchMode="singleTop"
             android:parentActivityName=".activities.AdministratorActivity" />
+        <activity android:name=".activities.EmployeeRegisterActivity"
+            android:parentActivityName=".activities.AdministratorActivity"
+            />
     </application>
 
 </manifest>
