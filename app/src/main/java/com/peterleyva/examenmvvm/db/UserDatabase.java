@@ -3,7 +3,9 @@ package com.peterleyva.examenmvvm.db;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.peterleyva.examenmvvm.dao.EmployeeDao;
 import com.peterleyva.examenmvvm.dao.SucursalDao;
+import com.peterleyva.examenmvvm.model.Employee;
 import com.peterleyva.examenmvvm.model.Sucursal;
 import com.peterleyva.examenmvvm.model.User;
 import com.peterleyva.examenmvvm.dao.UserDao;
@@ -14,7 +16,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {User.class,Sucursal.class},version = 2)
+@Database(entities = {User.class,Sucursal.class,Employee.class},version = 3)
 public abstract class UserDatabase extends RoomDatabase {
 
     private static UserDatabase instance;
@@ -23,6 +25,7 @@ public abstract class UserDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();
     public abstract SucursalDao sucursalDao();
+    public abstract EmployeeDao employeeDao();
 
     public static synchronized UserDatabase getInstance(Context context) {
         if(instance == null){

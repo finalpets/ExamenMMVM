@@ -4,7 +4,9 @@ import android.app.Application;
 import android.content.Intent;
 import android.os.AsyncTask;
 
+import com.peterleyva.examenmvvm.dao.EmployeeDao;
 import com.peterleyva.examenmvvm.dao.SucursalDao;
+import com.peterleyva.examenmvvm.model.Employee;
 import com.peterleyva.examenmvvm.model.Sucursal;
 import com.peterleyva.examenmvvm.model.User;
 import com.peterleyva.examenmvvm.dao.UserDao;
@@ -18,16 +20,20 @@ public class UserRepository {
 
     private UserDao userDao;
     private SucursalDao sucursalDao;
+    private EmployeeDao employeeDao;
     private LiveData<List<User>> allUsers;
     private LiveData<List<Sucursal>> allSucursales;
+    private LiveData<List<Employee>> allEmployees;
     private List<Sucursal> allSucursales_ByUserId;
 
     public UserRepository(Application application){
         UserDatabase database = UserDatabase.getInstance(application);
         userDao = database.userDao();
         sucursalDao = database.sucursalDao();
+        employeeDao = database.employeeDao();
         allUsers = userDao.getAllUsers();
         allSucursales = sucursalDao.getAllSucursales();
+        allEmployees = employeeDao.getAllEmployeees();
         //allSucursales_ByUserId = sucursalDao.getAllSucursales_ByUserId(id)
 
     }
@@ -169,4 +175,32 @@ public class UserRepository {
             return null;
         }
     }
+
+
+
+    /// ========== Employees ===========
+
+    public void insertEmployee(Employee employee){
+        new InsertEmployeeAsyncTask(employeeDao).execute(employee);
+    }
+
+    private static class InsertEmployeeAsyncTask extends AsyncTask<Employee, Void, Void> {
+
+        private EmployeeDao mAsyncTaskDao;
+
+        private InsertEmployeeAsyncTask(EmployeeDao dao) {
+            this.mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(Employee... params) {
+            mAsyncTaskDao.insert(params[0]);
+            return null;
+        }
+    }
+
+    public LiveData<List<Employee>> getAllEmployees() {
+        return allEmployees;
+    }
+
 }
