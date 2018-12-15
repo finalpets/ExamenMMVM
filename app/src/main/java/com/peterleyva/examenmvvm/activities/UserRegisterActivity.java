@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,6 +43,28 @@ public class UserRegisterActivity extends AppCompatActivity {
     private Button button_userRegister_register;
     private Button button_userRegister_back;
 
+
+    private View.OnFocusChangeListener validateOnFocusChangeListener = new View.OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View view, boolean b) {
+            if(validateFields())
+                button_userRegister_register.setEnabled(true);
+            else
+                button_userRegister_register.setEnabled(false);
+        }
+    };
+
+    private View.OnKeyListener validateOnKeyListener = new View.OnKeyListener() {
+        @Override
+        public boolean onKey(View view, int i, KeyEvent keyEvent) {
+            if(validateFields())
+                button_userRegister_register.setEnabled(true);
+            else
+                button_userRegister_register.setEnabled(false);
+            return false;
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,22 +77,37 @@ public class UserRegisterActivity extends AppCompatActivity {
         edittext_userRegister_password = findViewById(R.id.edittext_userRegister_password);
         edittext_userRegister_passwordConfirmation = findViewById(R.id.edittext_userRegister_passwordConfirmation);
 
-        edittext_userRegister_name.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
+        edittext_userRegister_name.setOnFocusChangeListener(validateOnFocusChangeListener);
+        edittext_userRegister_email.setOnFocusChangeListener(validateOnFocusChangeListener);
+        edittext_userRegister_rfc.setOnFocusChangeListener(validateOnFocusChangeListener);
+        edittext_userRegister_companyName.setOnFocusChangeListener(validateOnFocusChangeListener);
+        edittext_userRegister_password.setOnFocusChangeListener(validateOnFocusChangeListener);
+        edittext_userRegister_passwordConfirmation.setOnFocusChangeListener(validateOnFocusChangeListener);
 
-                if (hasFocus) {
-                    // If view having focus.
 
-                } else {
-//                    edittext_userRegister_name.getText().toString().isEmpty();
-//                    edittext_userRegister_name.setHighlightColor(Color.RED);
-                    //edittext_userRegister_name.setBackgroundColor(Color.RED);
-                    // If view not having focus. You can validate here
-                }
+        edittext_userRegister_name.setOnKeyListener(validateOnKeyListener);
+        edittext_userRegister_email.setOnKeyListener(validateOnKeyListener);
+        edittext_userRegister_rfc.setOnKeyListener(validateOnKeyListener);
+        edittext_userRegister_companyName.setOnKeyListener(validateOnKeyListener);
+        edittext_userRegister_password.setOnKeyListener(validateOnKeyListener);
+        edittext_userRegister_passwordConfirmation.setOnKeyListener(validateOnKeyListener);
 
-            }
-        });
+//        edittext_userRegister_name.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//
+//                if (hasFocus) {
+//                    // If view having focus.
+//
+//                } else {
+////                    edittext_userRegister_name.getText().toString().isEmpty();
+////                    edittext_userRegister_name.setHighlightColor(Color.RED);
+//                    //edittext_userRegister_name.setBackgroundColor(Color.RED);
+//                    // If view not having focus. You can validate here
+//                }
+//
+//            }
+//        });
 
 
         button_userRegister_register = findViewById(R.id.button_userRegister_register);
@@ -145,6 +183,16 @@ public class UserRegisterActivity extends AppCompatActivity {
                 )
         {
             Toast.makeText(this, "Fill all information", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(password.compareTo(password_confirmation) != 0){
+            Toast.makeText(this, "password is not the same", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(!email.contains("@")) {
+            Toast.makeText(this, "Email not contains @", Toast.LENGTH_SHORT).show();
             return;
         }
 
