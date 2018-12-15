@@ -73,6 +73,7 @@ public class UserRegisterActivity extends AppCompatActivity {
 
 
         button_userRegister_register = findViewById(R.id.button_userRegister_register);
+        button_userRegister_register.setEnabled(false);
         button_userRegister_back = findViewById(R.id.button_userRegister_back);
 
         button_userRegister_back.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +93,38 @@ public class UserRegisterActivity extends AppCompatActivity {
         toolbar.setTitle("Sign Up");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    private boolean validateFields(){
+
+        String name = edittext_userRegister_name.getText().toString();
+        String email = edittext_userRegister_email.getText().toString();
+        String rfc = edittext_userRegister_rfc.getText().toString();
+        String company_name = edittext_userRegister_companyName.getText().toString();
+        String password = edittext_userRegister_password.getText().toString();
+        String password_confirmation = edittext_userRegister_passwordConfirmation.getText().toString();
+
+        if(name.trim().isEmpty() ||
+                email.trim().isEmpty() ||
+                rfc.trim().isEmpty() ||
+                company_name.trim().isEmpty() ||
+                password.trim().isEmpty() ||
+                password_confirmation.trim().isEmpty()
+                )
+        {
+            return false;
+
+        }
+
+        if(password.compareTo(password_confirmation) != 0){
+            Toast.makeText(this, "password is not the same", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(!email.contains("@"))
+            return false;
+
+        return true;
     }
 
     private void saveUser(){
