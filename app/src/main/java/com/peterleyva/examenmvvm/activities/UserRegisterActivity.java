@@ -6,6 +6,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -54,14 +56,23 @@ public class UserRegisterActivity extends AppCompatActivity {
         }
     };
 
-    private View.OnKeyListener validateOnKeyListener = new View.OnKeyListener() {
+    private TextWatcher validateaddTextChangedListener = new TextWatcher() {
         @Override
-        public boolean onKey(View view, int i, KeyEvent keyEvent) {
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             if(validateFields())
                 button_userRegister_register.setEnabled(true);
             else
                 button_userRegister_register.setEnabled(false);
-            return false;
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
         }
     };
 
@@ -85,12 +96,13 @@ public class UserRegisterActivity extends AppCompatActivity {
         edittext_userRegister_passwordConfirmation.setOnFocusChangeListener(validateOnFocusChangeListener);
 
 
-        edittext_userRegister_name.setOnKeyListener(validateOnKeyListener);
-        edittext_userRegister_email.setOnKeyListener(validateOnKeyListener);
-        edittext_userRegister_rfc.setOnKeyListener(validateOnKeyListener);
-        edittext_userRegister_companyName.setOnKeyListener(validateOnKeyListener);
-        edittext_userRegister_password.setOnKeyListener(validateOnKeyListener);
-        edittext_userRegister_passwordConfirmation.setOnKeyListener(validateOnKeyListener);
+        edittext_userRegister_name.addTextChangedListener(validateaddTextChangedListener);
+        edittext_userRegister_email.addTextChangedListener(validateaddTextChangedListener);
+        edittext_userRegister_rfc.addTextChangedListener(validateaddTextChangedListener);
+        edittext_userRegister_companyName.addTextChangedListener(validateaddTextChangedListener);
+        edittext_userRegister_password.addTextChangedListener(validateaddTextChangedListener);
+        edittext_userRegister_passwordConfirmation.addTextChangedListener(validateaddTextChangedListener);
+        edittext_userRegister_passwordConfirmation.addTextChangedListener(validateaddTextChangedListener);
 
 //        edittext_userRegister_name.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 //            @Override
