@@ -65,6 +65,14 @@ public class NewSucursalAcivity extends AppCompatActivity {
         button_newSucursal_back = findViewById(R.id.button_newSucursal_back);
         button_newSucursal_register = findViewById(R.id.button_newSucursal_register);
 
+
+        button_newSucursal_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         button_newSucursal_register = findViewById(R.id.button_newSucursal_register);
 
         button_newSucursal_register.setOnClickListener(new View.OnClickListener() {
