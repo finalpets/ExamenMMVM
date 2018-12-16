@@ -60,26 +60,30 @@
             android:text=""
             />
         </com.google.android.material.textfield.TextInputLayout>
-        <LinearLayout
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal"-->
+            <!--&gt;-->
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_main_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-
-
-        <Button
-            android:id="@+id/button_main_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="Login"
+            app:cornerRadius="50dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             />
             <Button
                 android:id="@+id/button_main_register"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Register"
+                android:text="Sign Up"
+                app:cornerRadius="50dp"
+                android:backgroundTint="@color/colorPrimary"
                 />
-        </LinearLayout>
+        <!--</LinearLayout>-->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_users"
             android:layout_width="match_parent"

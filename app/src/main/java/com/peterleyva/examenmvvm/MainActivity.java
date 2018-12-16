@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
 import com.peterleyva.examenmvvm.activities.AdministratorActivity;
 import com.peterleyva.examenmvvm.activities.UserRegisterActivity;
 import com.peterleyva.examenmvvm.model.User;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button button = findViewById(R.id.button_main_register);
-        Button button_login = findViewById(R.id.button_main_login);
+        MaterialButton button_login = findViewById(R.id.button_main_login);
 
         edittext_main_email = findViewById(R.id.edittext_main_email);
         edittext_main_password = findViewById(R.id.edittext_main_password);
