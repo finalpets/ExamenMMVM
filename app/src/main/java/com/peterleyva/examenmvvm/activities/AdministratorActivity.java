@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.peterleyva.examenmvvm.MainActivity;
 import com.peterleyva.examenmvvm.R;
 import com.peterleyva.examenmvvm.adapters.SucursalAdapter;
@@ -62,6 +63,10 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
                 R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+        View contextView = findViewById(R.id.coordinator_administrator);
+
+        Snackbar snackbar = Snackbar.make(contextView, "Login Success", Snackbar.LENGTH_SHORT);
+        snackbar.show();
 
         navigationView.setCheckedItem(R.id.nav_home);
 

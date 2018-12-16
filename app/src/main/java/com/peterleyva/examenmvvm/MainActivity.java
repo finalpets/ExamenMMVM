@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.peterleyva.examenmvvm.activities.AdministratorActivity;
 import com.peterleyva.examenmvvm.activities.UserRegisterActivity;
 import com.peterleyva.examenmvvm.model.User;
@@ -51,12 +52,15 @@ public class MainActivity extends AppCompatActivity {
                 {
                     if(userViewModel.getAllUsers().getValue().get(x).getEmail().compareToIgnoreCase(edittext_main_email.getText().toString()) == 0){
                         if(userViewModel.getAllUsers().getValue().get(x).getPassword().compareToIgnoreCase(edittext_main_password.getText().toString()) == 0) {
+
+
                             Intent intent = new Intent(MainActivity.this,AdministratorActivity.class);
 
                             intent.putExtra(EXTRA_ID,userViewModel.getAllUsers().getValue().get(x).getId());
                             startActivity(intent);
 
-                            Toast.makeText(MainActivity.this, "Password correct", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(MainActivity.this, "Password correct", Toast.LENGTH_SHORT).show();
+
                         }
                         else
                             Toast.makeText(MainActivity.this, "Password Incorrect", Toast.LENGTH_SHORT).show();

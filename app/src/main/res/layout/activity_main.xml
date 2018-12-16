@@ -2,114 +2,111 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-
     tools:context=".MainActivity">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
-    <!--<com.google.android.material.appbar.AppBarLayout-->
+        <!--<com.google.android.material.appbar.AppBarLayout-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->
         <!--android:background="?attr/colorPrimary"-->
         <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">-->
 
         <!--<androidx.appcompat.widget.Toolbar-->
-            <!--android:id="@+id/toolbar_promote_table"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="?attr/actionBarSize"-->
-            <!--android:elevation="4dp"-->
-            <!--app:title="Login"-->
-            <!--app:layout_scrollFlags="scroll|enterAlways|snap" />-->
-    <!--</com.google.android.material.appbar.AppBarLayout>-->
+        <!--android:id="@+id/toolbar_promote_table"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:elevation="4dp"-->
+        <!--app:title="Login"-->
+        <!--app:layout_scrollFlags="scroll|enterAlways|snap" />-->
+        <!--</com.google.android.material.appbar.AppBarLayout>-->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:layout_centerInParent="true"
-        >
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="24dp"
-            android:textStyle="bold"
-            android:text="Login"
-            android:layout_gravity="center"
-            android:layout_marginBottom="50dp"
-            />
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            >
-        <EditText
-            android:id="@+id/edittext_main_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Correo"
-            android:inputType="text"
-            android:drawableLeft="@drawable/ic_mail"
-            />
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            >
-        <EditText
-            android:id="@+id/edittext_main_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:drawableLeft="@drawable/ic_password"
-            android:text=""
-            />
-        </com.google.android.material.textfield.TextInputLayout>
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Remember me"
-            android:layout_marginBottom="20dp"
-            />
-        <!--<LinearLayout-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="50dp"
+                android:text="Login"
+                android:textSize="24dp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <EditText
+                    android:id="@+id/edittext_main_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_mail"
+                    android:hint="Correo"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <EditText
+                    android:id="@+id/edittext_main_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_password"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:text="" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="Remember me" />
+            <!--<LinearLayout-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content"-->
             <!--android:orientation="horizontal"-->
             <!--&gt;-->
 
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_main_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            app:cornerRadius="50dp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_main_login"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                app:cornerRadius="50dp" />
+
             <Button
                 android:id="@+id/button_main_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sign Up"
-                app:cornerRadius="50dp"
                 android:backgroundTint="@color/colorPrimary"
-                />
-        <!--</LinearLayout>-->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview_users"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                android:text="Sign Up"
+                app:cornerRadius="50dp" />
+            <!--</LinearLayout>-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_users"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        </androidx.recyclerview.widget.RecyclerView>
+            </androidx.recyclerview.widget.RecyclerView>
 
-    </LinearLayout>
-</RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
