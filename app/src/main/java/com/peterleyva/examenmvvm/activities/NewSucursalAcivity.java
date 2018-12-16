@@ -5,6 +5,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,6 +36,37 @@ public class NewSucursalAcivity extends AppCompatActivity {
 
     public static final String EXTRA_SUCURSAL_PAIS =
             "com.peterleyva.examenmvvm.activities.EXTRA_SUCURSAL_PAIS";
+
+
+    private View.OnFocusChangeListener validateOnFocusChangeListener = new View.OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View view, boolean b) {
+            if(validateFields())
+                button_newSucursal_register.setEnabled(true);
+            else
+                button_newSucursal_register.setEnabled(false);
+        }
+    };
+
+    private TextWatcher validateaddTextChangedListener = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            if(validateFields())
+                button_newSucursal_register.setEnabled(true);
+            else
+                button_newSucursal_register.setEnabled(false);
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    };
 
     EditText edittext_newSucursal_name;
     EditText edittext_newSucursal_adress;
@@ -66,6 +99,24 @@ public class NewSucursalAcivity extends AppCompatActivity {
         button_newSucursal_register = findViewById(R.id.button_newSucursal_register);
 
 
+        edittext_newSucursal_name.setOnFocusChangeListener(validateOnFocusChangeListener);
+        edittext_newSucursal_adress.setOnFocusChangeListener(validateOnFocusChangeListener);
+        edittext_newSucursal_colonia.setOnFocusChangeListener(validateOnFocusChangeListener);
+        edittext_newSucursal_numeroExterior.setOnFocusChangeListener(validateOnFocusChangeListener);
+        edittext_newSucursal_postalCode.setOnFocusChangeListener(validateOnFocusChangeListener);
+        edittext_newSucursal_ciudad.setOnFocusChangeListener(validateOnFocusChangeListener);
+        edittext_newSucursal_pais.setOnFocusChangeListener(validateOnFocusChangeListener);
+
+        edittext_newSucursal_name.addTextChangedListener(validateaddTextChangedListener);
+        edittext_newSucursal_adress.addTextChangedListener(validateaddTextChangedListener);
+        edittext_newSucursal_colonia.addTextChangedListener(validateaddTextChangedListener);
+        edittext_newSucursal_numeroExterior.addTextChangedListener(validateaddTextChangedListener);
+        edittext_newSucursal_postalCode.addTextChangedListener(validateaddTextChangedListener);
+        edittext_newSucursal_ciudad.addTextChangedListener(validateaddTextChangedListener);
+        edittext_newSucursal_pais.addTextChangedListener(validateaddTextChangedListener);
+
+
+
         button_newSucursal_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,6 +125,7 @@ public class NewSucursalAcivity extends AppCompatActivity {
         });
 
         button_newSucursal_register = findViewById(R.id.button_newSucursal_register);
+        button_newSucursal_register.setEnabled(false);
 
         button_newSucursal_register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +135,56 @@ public class NewSucursalAcivity extends AppCompatActivity {
         });
 
     }
+
+    private boolean validateFields(){
+
+        int numero_exterior = 0;
+        int postal_code = 0;
+
+        String name = edittext_newSucursal_name.getText().toString();
+        String address = edittext_newSucursal_adress.getText().toString();
+        String colonia = edittext_newSucursal_colonia.getText().toString();
+        try{
+            numero_exterior = Integer.parseInt(edittext_newSucursal_numeroExterior.getText().toString());
+
+        }
+        catch (NumberFormatException e){
+            numero_exterior = 0;
+
+            edittext_newSucursal_numeroExterior.setText("0");
+
+        }
+
+        try{
+
+            postal_code = Integer.parseInt(edittext_newSucursal_postalCode.getText().toString());
+        }
+        catch (NumberFormatException e){
+
+            postal_code = 0;
+            edittext_newSucursal_postalCode.setText("0");
+        }
+
+        String city = edittext_newSucursal_ciudad.getText().toString();
+        String country = edittext_newSucursal_pais.getText().toString();
+
+        if(name.trim().isEmpty() ||
+                numero_exterior == 0 ||
+                postal_code == 0 ||
+                address.trim().isEmpty() ||
+                colonia.trim().isEmpty() ||
+                city.trim().isEmpty() ||
+                country.trim().isEmpty()
+                )
+        {
+            return false;
+
+        }
+
+
+        return true;
+    }
+
     private void saveSucursal(){
         String name = edittext_newSucursal_name.getText().toString();
         String address = edittext_newSucursal_adress.getText().toString();
@@ -94,14 +196,16 @@ public class NewSucursalAcivity extends AppCompatActivity {
 
 
         if(name.trim().isEmpty() ||
+                numero_exterior == 0 ||
+                postal_code == 0 ||
                 address.trim().isEmpty() ||
                 colonia.trim().isEmpty() ||
                 city.trim().isEmpty() ||
                 country.trim().isEmpty()
                 )
         {
-            Toast.makeText(this, "Fill all information", Toast.LENGTH_SHORT).show();
             return;
+
         }
 
         Intent data = new Intent();

@@ -55,6 +55,7 @@
             android:layout_height="wrap_content"
             android:hint="Numero Exterior"
             android:inputType="number"
+            android:text="0"
             />
 
         <EditText
@@ -63,7 +64,7 @@
             android:layout_height="wrap_content"
             android:hint="Codigo Postal"
             android:inputType="number"
-            android:text=""
+            android:text="0"
             />
         <EditText
             android:id="@+id/edittext_newSucursal_ciudad"
