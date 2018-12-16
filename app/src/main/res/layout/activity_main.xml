@@ -31,23 +31,35 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
 
-
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            >
         <EditText
             android:id="@+id/edittext_main_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Correo"
             android:inputType="text"
+            android:drawableLeft="@drawable/ic_mail"
             />
-
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            >
         <EditText
             android:id="@+id/edittext_main_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
             android:inputType="textPassword"
+            android:drawableLeft="@drawable/ic_password"
             android:text=""
             />
+        </com.google.android.material.textfield.TextInputLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
