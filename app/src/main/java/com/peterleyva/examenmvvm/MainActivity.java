@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<User> users) {
                 //update RecyclerView
-                adapter.setUsers(users);
+                //adapter.setUsers(users); //coment users Recyclerview
                 Toast.makeText(MainActivity.this, "onChange", Toast.LENGTH_SHORT).show();
             }
         });
