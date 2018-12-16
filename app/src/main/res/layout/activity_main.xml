@@ -73,6 +73,12 @@
             android:text=""
             />
         </com.google.android.material.textfield.TextInputLayout>
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remember me"
+            android:layout_marginBottom="20dp"
+            />
         <!--<LinearLayout-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content"-->
