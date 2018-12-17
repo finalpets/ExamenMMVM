@@ -1,8 +1,10 @@
 package com.peterleyva.examenmvvm.activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -77,6 +79,9 @@ public class NewSucursalAcivity extends AppCompatActivity {
     EditText edittext_newSucursal_pais;
     Button button_newSucursal_back;
     Button button_newSucursal_register;
+
+
+    private boolean discardChanges = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -168,6 +173,16 @@ public class NewSucursalAcivity extends AppCompatActivity {
         String city = edittext_newSucursal_ciudad.getText().toString();
         String country = edittext_newSucursal_pais.getText().toString();
 
+
+        //Discard Changes
+        if(!name.trim().isEmpty() ||
+                !address.trim().isEmpty() ||
+                !colonia.trim().isEmpty() ||
+                !city.trim().isEmpty() ||
+                !country.trim().isEmpty()
+                )
+                    discardChanges =true;
+
         if(name.trim().isEmpty() ||
                 numero_exterior == 0 ||
                 postal_code == 0 ||
@@ -222,7 +237,30 @@ public class NewSucursalAcivity extends AppCompatActivity {
 
     }
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
+    public void onBackPressed()
+    {
+        //super.onBackPressed();
+
+        if(discardChanges) {
+            // Instantiate an AlertDialog.Builder with its constructor
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            // Chain together various setter methods to set the dialog characteristics
+            builder.setTitle("Discard Changes?");
+            // Add the buttons
+            builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User clicked OK button
+                    finish();
+                }
+            });
+            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User cancelled the dialog
+                }
+            });
+            // Get the AlertDialog from create()
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
     }
 }

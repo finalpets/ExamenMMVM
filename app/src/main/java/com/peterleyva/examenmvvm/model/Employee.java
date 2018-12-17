@@ -3,9 +3,10 @@ package com.peterleyva.examenmvvm.model;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "employee_table",foreignKeys = @ForeignKey(entity = Sucursal.class,parentColumns = "id",childColumns = "sucursal_id"))
+@Entity(tableName = "employee_table",foreignKeys = @ForeignKey(entity = Sucursal.class,parentColumns = "id",childColumns = "sucursal_id",onDelete = ForeignKey.CASCADE),indices = {@Index(value = "sucursal_id")})
 public class Employee {
 
     @PrimaryKey(autoGenerate = true)

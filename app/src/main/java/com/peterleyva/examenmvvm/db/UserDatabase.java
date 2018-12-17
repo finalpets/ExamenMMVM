@@ -16,7 +16,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {User.class,Sucursal.class,Employee.class},version = 4)
+@Database(entities = {User.class,Sucursal.class,Employee.class},version = 6)
 public abstract class UserDatabase extends RoomDatabase {
 
     private static UserDatabase instance;

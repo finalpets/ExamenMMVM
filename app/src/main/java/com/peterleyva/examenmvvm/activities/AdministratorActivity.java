@@ -10,6 +10,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +18,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -121,6 +124,26 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
                 textview_navheader_companyName.setText(user.getCompany_name());
             }
         });
+
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+                sucursalViewModel.delete(adapter.getSucursalAt(viewHolder.getAdapterPosition()));
+                View contextView = findViewById(R.id.coordinator_administrator);
+                Snackbar snackbar = Snackbar.make(contextView, "Delete Successfully", Snackbar.LENGTH_SHORT);
+                snackbar.show();
+
+            }
+        }).attachToRecyclerView(recyclerView);
+
 
 //        userViewModel.getAllUsers().observe(this, new Observer<List<User>>() {
 //            @Override
@@ -258,5 +281,29 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
             AlertDialog dialog = builder.create();
             dialog.show();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.administrator_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+
+            case R.id.delete_all_sucursales:
+                sucursalViewModel.deleteAllSucursales();
+                View contextView = findViewById(R.id.coordinator_administrator);
+
+                Snackbar snackbar = Snackbar.make(contextView, "Delete all Sucursales Done", Snackbar.LENGTH_SHORT);
+                snackbar.show();
+                return true;
+                default:
+                    return super.onOptionsItemSelected(item);
+        }
+
     }
 }

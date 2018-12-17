@@ -43,6 +43,10 @@ public class SucursalAdapter extends RecyclerView.Adapter <SucursalAdapter.UserH
         this.sucursals = sucursals;
         notifyDataSetChanged();
     }
+
+    public Sucursal getSucursalAt(int positon){
+        return  sucursals.get(positon);
+    }
     class UserHolder extends RecyclerView.ViewHolder {
 
         private TextView textview_sucursal_name;

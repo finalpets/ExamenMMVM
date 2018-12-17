@@ -135,6 +135,16 @@ public class UserRepository {
         new InsertSucursalAsyncTask(sucursalDao).execute(sucursal);
     }
 
+    public void deleteSucursal(Sucursal sucursal){
+        new DeleteSucursalAsyncTask(sucursalDao).execute(sucursal);
+
+    }
+
+    public void deleteAllSucursales(){
+        new DeleteAllSucursalesAsyncTask(sucursalDao).execute();
+
+    }
+
     public LiveData<List<Sucursal>> getAllSucursales() {
         return allSucursales;
     }
@@ -160,6 +170,37 @@ public class UserRepository {
         }
     }
 
+
+    private static class DeleteSucursalAsyncTask extends AsyncTask<Sucursal, Void, Void> {
+
+        private SucursalDao mAsyncTaskDao;
+
+        private DeleteSucursalAsyncTask(SucursalDao dao) {
+            this.mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(Sucursal... params) {
+            mAsyncTaskDao.delete(params[0]);
+            return null;
+        }
+    }
+
+
+    private static class DeleteAllSucursalesAsyncTask extends AsyncTask<Void,Void ,Void>{
+
+        private SucursalDao sucursalDao;
+
+        private DeleteAllSucursalesAsyncTask (SucursalDao sucursalDao){
+            this.sucursalDao = sucursalDao;
+        }
+        @Override
+        protected Void doInBackground(Void... voids) {
+            sucursalDao.deleteAllSucursales();
+            return null;
+
+        }
+    }
 //    private static class getAllSucursales_ByUserId extends AsyncTask<Integer, Void, Void> {
 //
 //        private SucursalDao mAsyncTaskDao;

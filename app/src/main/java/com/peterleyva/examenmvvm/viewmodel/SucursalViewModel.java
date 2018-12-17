@@ -25,4 +25,10 @@ public class SucursalViewModel extends AndroidViewModel {
     public LiveData<List<Sucursal>> getAllSucursales() { return mAllSucursales; }
 
     public void insert(Sucursal sucursal) { mRepository.insertSucursal(sucursal); }
+    public void delete(Sucursal sucursal){
+        mRepository.deleteSucursal(sucursal);
+    }
+    public void deleteAllSucursales(){
+        mRepository.deleteAllSucursales();
+    }
 }
