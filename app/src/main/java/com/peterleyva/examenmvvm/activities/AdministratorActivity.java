@@ -203,7 +203,11 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
 
 //            User user = new User(name,email,rfc,password,company_name,password_confirmation);
 //            userViewModel.insert(user);
-            Toast.makeText(this, "Register Success", Toast.LENGTH_SHORT).show();
+            View contextView = findViewById(R.id.coordinator_administrator);
+
+            Snackbar snackbar = Snackbar.make(contextView, "Register Success", Snackbar.LENGTH_SHORT);
+            snackbar.show();
+            //Toast.makeText(this, "Register Success", Toast.LENGTH_SHORT).show();
 
         }
         else
@@ -215,6 +219,10 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
             int sucursalId = data.getIntExtra(EmployeeRegisterActivity.EXTRA_EMPLOYEE_SUCURSAL_ID,0);
 
             Employee employee = new Employee(sucursalId,name,rfc,puesto);
+            View contextView = findViewById(R.id.coordinator_administrator);
+
+            Snackbar snackbar = Snackbar.make(contextView, "Register Success", Snackbar.LENGTH_SHORT);
+            snackbar.show();
 
             employeeViewModel.insert(employee);
 
