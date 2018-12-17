@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
@@ -103,6 +104,9 @@ public class UserRegisterActivity extends AppCompatActivity {
         edittext_userRegister_password.addTextChangedListener(validateaddTextChangedListener);
         edittext_userRegister_passwordConfirmation.addTextChangedListener(validateaddTextChangedListener);
         edittext_userRegister_passwordConfirmation.addTextChangedListener(validateaddTextChangedListener);
+
+
+        edittext_userRegister_rfc.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
 
 //        edittext_userRegister_name.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 //            @Override

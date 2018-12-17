@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
@@ -102,6 +103,9 @@ public class EmployeeRegisterActivity extends AppCompatActivity {
         edittext_employeeRegister_name.addTextChangedListener(validateaddTextChangedListener);
         edittext_employeeRegister_rfc.addTextChangedListener(validateaddTextChangedListener);
         edittext_employeeRegister_puesto.addTextChangedListener(validateaddTextChangedListener);
+
+
+        edittext_employeeRegister_rfc.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
 
         button_employeeRegister_register.setOnClickListener(new View.OnClickListener() {
             @Override
