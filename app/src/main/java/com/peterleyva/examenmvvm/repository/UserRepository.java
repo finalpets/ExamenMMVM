@@ -69,6 +69,11 @@ public class UserRepository {
         return userDao.getUserById(userId);
     }
 
+    public LiveData<User> getUserLogin(String email,String password) {
+        // Returns a LiveData object directly from the database.
+        return userDao.getUserLogin(email,password);
+    }
+
     private static class InsertUserAsyncTask extends AsyncTask<User,Void ,Void>{
 
         private UserDao userDao;

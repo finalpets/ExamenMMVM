@@ -43,5 +43,8 @@ public class UserViewModel extends AndroidViewModel {
     public LiveData<User> getUserById(int id) {
         return repository.getUser(id);
     }
+    public LiveData<User> getUserLogin(String  email,String password) {
+        return repository.getUserLogin(email,password);
+    }
 
 }

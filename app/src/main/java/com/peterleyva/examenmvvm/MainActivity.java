@@ -2,6 +2,7 @@ package com.peterleyva.examenmvvm;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -48,27 +49,22 @@ public class MainActivity extends AppCompatActivity {
         button_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (int x = 0;x<userViewModel.getAllUsers().getValue().size();x++)
-                {
-                    if(userViewModel.getAllUsers().getValue().get(x).getEmail().compareToIgnoreCase(edittext_main_email.getText().toString()) == 0){
-                        if(userViewModel.getAllUsers().getValue().get(x).getPassword().compareToIgnoreCase(edittext_main_password.getText().toString()) == 0) {
 
+                userViewModel.getUserLogin(edittext_main_email.getText().toString(),edittext_main_password.getText().toString()).observe(MainActivity.this, new Observer<User>() {
+                    @Override
+                    public void onChanged(User user) {
 
-                            Intent intent = new Intent(MainActivity.this,AdministratorActivity.class);
+                        if(user != null) {
+                            Intent intent = new Intent(MainActivity.this, AdministratorActivity.class);
 
-                            intent.putExtra(EXTRA_ID,userViewModel.getAllUsers().getValue().get(x).getId());
+                            intent.putExtra(EXTRA_ID, user.getId());
                             startActivity(intent);
-
-                            //Toast.makeText(MainActivity.this, "Password correct", Toast.LENGTH_SHORT).show();
-
                         }
                         else
-                            Toast.makeText(MainActivity.this, "Password Incorrect", Toast.LENGTH_SHORT).show();
-                        
+                            Toast.makeText(MainActivity.this, "Wrong Email or Password", Toast.LENGTH_SHORT).show();
+
                     }
-                    else
-                        Toast.makeText(MainActivity.this, "Email Incorrect", Toast.LENGTH_SHORT).show();
-                }
+                });
             }
         });
 
