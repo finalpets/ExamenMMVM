@@ -140,6 +140,12 @@ public class UserRepository {
 
     }
 
+    public void updateSucursal(Sucursal sucursal){
+        new UpdateSucursalAsyncTask(sucursalDao).execute(sucursal);
+
+    }
+
+
     public void deleteAllSucursales(){
         new DeleteAllSucursalesAsyncTask(sucursalDao).execute();
 
@@ -182,6 +188,20 @@ public class UserRepository {
         @Override
         protected Void doInBackground(Sucursal... params) {
             mAsyncTaskDao.delete(params[0]);
+            return null;
+        }
+    }
+    private static class UpdateSucursalAsyncTask extends AsyncTask<Sucursal, Void, Void> {
+
+        private SucursalDao mAsyncTaskDao;
+
+        private UpdateSucursalAsyncTask(SucursalDao dao) {
+            this.mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(Sucursal... params) {
+            mAsyncTaskDao.update(params[0]);
             return null;
         }
     }

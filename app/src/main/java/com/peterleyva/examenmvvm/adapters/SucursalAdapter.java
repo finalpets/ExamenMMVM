@@ -15,14 +15,16 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class SucursalAdapter extends RecyclerView.Adapter <SucursalAdapter.UserHolder>{
+public class SucursalAdapter extends RecyclerView.Adapter<SucursalAdapter.UserHolder> {
 
     private List<Sucursal> sucursals = new ArrayList<>();
+    private OnItemClickListener listener;
+
     @NonNull
     @Override
     public UserHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_sucursal,parent,false);
+                .inflate(R.layout.item_sucursal, parent, false);
         return new UserHolder(itemView);
     }
 
@@ -31,7 +33,7 @@ public class SucursalAdapter extends RecyclerView.Adapter <SucursalAdapter.UserH
 
         Sucursal currentSucursal = sucursals.get(position);
         holder.textview_sucursal_name.setText(currentSucursal.getName());
-        holder.textview_sucursal_cityCountry.setText(currentSucursal.getCity()+" "+currentSucursal.getCountry());
+        holder.textview_sucursal_cityCountry.setText(currentSucursal.getCity() + " " + currentSucursal.getCountry());
     }
 
     @Override
@@ -39,28 +41,48 @@ public class SucursalAdapter extends RecyclerView.Adapter <SucursalAdapter.UserH
         return sucursals.size();
     }
 
-    public void setSucursals(List<Sucursal> sucursals){
+    public void setSucursals(List<Sucursal> sucursals) {
         this.sucursals = sucursals;
         notifyDataSetChanged();
     }
 
-    public Sucursal getSucursalAt(int positon){
-        return  sucursals.get(positon);
+    public Sucursal getSucursalAt(int positon) {
+        return sucursals.get(positon);
     }
+
     class UserHolder extends RecyclerView.ViewHolder {
 
         private TextView textview_sucursal_name;
         private TextView textview_sucursal_cityCountry;
 
-        public UserHolder(View itemView){
+        public UserHolder(View itemView) {
             super(itemView);
 
             textview_sucursal_name = itemView.findViewById(R.id.textview_sucursal_name);
             textview_sucursal_cityCountry = itemView.findViewById(R.id.textview_sucursal_cityCountry);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(sucursals.get(position));
+                    }
+                }
+            });
             //Todo: Number of Empoolyes
 
         }
 
 
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Sucursal sucursal);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+
+        this.listener = listener;
     }
 }

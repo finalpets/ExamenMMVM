@@ -17,20 +17,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.peterleyva.examenmvvm.MainActivity;
 import com.peterleyva.examenmvvm.R;
 import com.peterleyva.examenmvvm.adapters.SucursalAdapter;
-import com.peterleyva.examenmvvm.dao.EmployeeDao;
 import com.peterleyva.examenmvvm.model.Employee;
 import com.peterleyva.examenmvvm.model.Sucursal;
 import com.peterleyva.examenmvvm.model.User;
@@ -53,6 +50,7 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
 
     public final static int NEW_SUCURSAL_REQUEST = 1;
     public final static int NEW_EMPLOYEE_REQUEST = 2;
+    public final static int EDIT_SUCURSAL_REQUEST = 3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -144,6 +142,23 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
             }
         }).attachToRecyclerView(recyclerView);
 
+        adapter.setOnItemClickListener(new SucursalAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Sucursal sucursal) {
+                Intent intent = new Intent(AdministratorActivity.this,NewEditSucursalAcivity.class);
+                intent.putExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_ID,sucursal.getId());
+                intent.putExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_NAME,sucursal.getName());
+                intent.putExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_ADDRESS,sucursal.getAdress());
+                intent.putExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_CIUDAD,sucursal.getCity());
+                intent.putExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_CODIGOPOSTAL,sucursal.getPostal_codel());
+                intent.putExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_COLONIA,sucursal.getColonial());
+                intent.putExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_NUMEROEXTERIOR,sucursal.getNumber());
+                intent.putExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_PAIS,sucursal.getCountry());
+                startActivityForResult(intent,EDIT_SUCURSAL_REQUEST);
+
+            }
+        });
+
 
 //        userViewModel.getAllUsers().observe(this, new Observer<List<User>>() {
 //            @Override
@@ -179,7 +194,7 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
                 break;
 
             case R.id.nav_register_sucursal:
-                intent = new Intent(AdministratorActivity.this,NewSucursalAcivity.class);
+                intent = new Intent(AdministratorActivity.this,NewEditSucursalAcivity.class);
                 startActivityForResult(intent,NEW_SUCURSAL_REQUEST);
                 //startActivity(intent);
                 //sucursalViewModel.insert(new Sucursal("Gameloft","Madero","Nueva",1020,21396,"Mexicali","Mexico",userId));
@@ -204,21 +219,21 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode ==  NEW_SUCURSAL_REQUEST && resultCode == RESULT_OK){
 
-//            String name = data.getStringExtra(NewSucursalAcivity.EXTRA_SUCURSAL_NAME);
-//            String email = data.getStringExtra(NewSucursalAcivity.EXTRA_EMAIL);
-//            String rfc = data.getStringExtra(NewSucursalAcivity.EXTRA_RFC);
-//            String company_name = data.getStringExtra(NewSucursalAcivity.EXTRA_COMPANY);
-//            String password = data.getStringExtra(NewSucursalAcivity.EXTRA_PASSWORD);
-//            String password_confirmation = data.getStringExtra(NewSucursalAcivity.EXTRA_PASSWORD_CONFIRMATION);
+//            String name = data.getStringExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_NAME);
+//            String email = data.getStringExtra(NewEditSucursalAcivity.EXTRA_EMAIL);
+//            String rfc = data.getStringExtra(NewEditSucursalAcivity.EXTRA_RFC);
+//            String company_name = data.getStringExtra(NewEditSucursalAcivity.EXTRA_COMPANY);
+//            String password = data.getStringExtra(NewEditSucursalAcivity.EXTRA_PASSWORD);
+//            String password_confirmation = data.getStringExtra(NewEditSucursalAcivity.EXTRA_PASSWORD_CONFIRMATION);
 
 
-            String name = data.getStringExtra(NewSucursalAcivity.EXTRA_SUCURSAL_NAME);
-            String address = data.getStringExtra(NewSucursalAcivity.EXTRA_SUCURSAL_ADDRESS);
-            String colonia = data.getStringExtra(NewSucursalAcivity.EXTRA_SUCURSAL_COLONIA);
-            int numero_exterior = data.getIntExtra(NewSucursalAcivity.EXTRA_SUCURSAL_NUMEROEXTERIOR,0);
-            int postal_code = data.getIntExtra(NewSucursalAcivity.EXTRA_SUCURSAL_CODIGOPOSTAL,0);
-            String city = data.getStringExtra(NewSucursalAcivity.EXTRA_SUCURSAL_CIUDAD);
-            String country = data.getStringExtra(NewSucursalAcivity.EXTRA_SUCURSAL_PAIS);
+            String name = data.getStringExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_NAME);
+            String address = data.getStringExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_ADDRESS);
+            String colonia = data.getStringExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_COLONIA);
+            int numero_exterior = data.getIntExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_NUMEROEXTERIOR,0);
+            int postal_code = data.getIntExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_CODIGOPOSTAL,0);
+            String city = data.getStringExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_CIUDAD);
+            String country = data.getStringExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_PAIS);
 
             Sucursal sucursal = new Sucursal(name,address,colonia,numero_exterior,postal_code,city,country,userId);
 
@@ -249,6 +264,39 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
 
             employeeViewModel.insert(employee);
 
+
+
+        }
+        else
+        if(requestCode ==  EDIT_SUCURSAL_REQUEST && resultCode == RESULT_OK){
+
+            int id = data.getIntExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_ID, -1);
+
+            if(id == -1){
+                View contextView = findViewById(R.id.coordinator_administrator);
+
+                Snackbar snackbar = Snackbar.make(contextView, "Sucursal Can't be updated", Snackbar.LENGTH_SHORT);
+                snackbar.show();
+            }
+            String name = data.getStringExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_NAME);
+            String address = data.getStringExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_ADDRESS);
+            String colonia = data.getStringExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_COLONIA);
+            int numero_exterior = data.getIntExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_NUMEROEXTERIOR,0);
+            int postal_code = data.getIntExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_CODIGOPOSTAL,0);
+            String city = data.getStringExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_CIUDAD);
+            String country = data.getStringExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_PAIS);
+
+            Sucursal sucursal = new Sucursal(name,address,colonia,numero_exterior,postal_code,city,country,userId);
+            sucursal.setId(id);
+
+            sucursalViewModel.update(sucursal);
+
+//            User user = new User(name,email,rfc,password,company_name,password_confirmation);
+//            userViewModel.insert(user);
+            View contextView = findViewById(R.id.coordinator_administrator);
+
+            Snackbar snackbar = Snackbar.make(contextView, "Sucursal Updated", Snackbar.LENGTH_SHORT);
+            snackbar.show();
 
 
         }

@@ -28,7 +28,7 @@
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.StatusBar" />
         <activity
-            android:name=".activities.NewSucursalAcivity"
+            android:name=".activities.NewEditSucursalAcivity"
             android:launchMode="singleTop"
             android:parentActivityName=".activities.AdministratorActivity" />
         <activity android:name=".activities.EmployeeRegisterActivity"

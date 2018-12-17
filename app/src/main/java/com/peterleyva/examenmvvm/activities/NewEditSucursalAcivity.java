@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.peterleyva.examenmvvm.R;
 
-public class NewSucursalAcivity extends AppCompatActivity {
+public class NewEditSucursalAcivity extends AppCompatActivity {
 
     public static final String EXTRA_SUCURSAL_NAME =
             "com.peterleyva.examenmvvm.activities.EXTRA_SUCURSAL_NAME";
@@ -38,6 +38,9 @@ public class NewSucursalAcivity extends AppCompatActivity {
 
     public static final String EXTRA_SUCURSAL_PAIS =
             "com.peterleyva.examenmvvm.activities.EXTRA_SUCURSAL_PAIS";
+
+    public static final String EXTRA_SUCURSAL_ID =
+            "com.peterleyva.examenmvvm.activities.EXTRA_SUCURSAL_ID";
 
 
     private View.OnFocusChangeListener validateOnFocusChangeListener = new View.OnFocusChangeListener() {
@@ -87,11 +90,10 @@ public class NewSucursalAcivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_sucursal_acivity);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("New Sucursal");
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         edittext_newSucursal_name = findViewById(R.id.edittext_newSucursal_name);
         edittext_newSucursal_adress = findViewById(R.id.edittext_newSucursal_adress);
@@ -102,6 +104,28 @@ public class NewSucursalAcivity extends AppCompatActivity {
         edittext_newSucursal_pais = findViewById(R.id.edittext_newSucursal_pais);
         //button_newSucursal_back = findViewById(R.id.button_newSucursal_back);
         button_newSucursal_register = findViewById(R.id.button_newSucursal_register);
+
+        Intent intent = getIntent();
+
+        if(intent.hasExtra(EXTRA_SUCURSAL_ID)){
+            toolbar.setTitle("Edit Sucursal");
+
+            edittext_newSucursal_name.setText(intent.getStringExtra(EXTRA_SUCURSAL_NAME));
+            edittext_newSucursal_adress.setText(intent.getStringExtra(EXTRA_SUCURSAL_ADDRESS));
+            edittext_newSucursal_colonia.setText(intent.getStringExtra(EXTRA_SUCURSAL_COLONIA));
+            edittext_newSucursal_numeroExterior.setText(""+intent.getIntExtra(EXTRA_SUCURSAL_NUMEROEXTERIOR,0));
+            edittext_newSucursal_postalCode.setText(""+intent.getIntExtra(EXTRA_SUCURSAL_CODIGOPOSTAL,0));
+            edittext_newSucursal_ciudad.setText(intent.getStringExtra(EXTRA_SUCURSAL_CIUDAD));
+            edittext_newSucursal_pais.setText(intent.getStringExtra(EXTRA_SUCURSAL_PAIS));
+
+        } else
+            toolbar.setTitle("New Sucursal");
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
 
 
         edittext_newSucursal_name.setOnFocusChangeListener(validateOnFocusChangeListener);
@@ -231,6 +255,13 @@ public class NewSucursalAcivity extends AppCompatActivity {
         data.putExtra(EXTRA_SUCURSAL_CODIGOPOSTAL,postal_code);
         data.putExtra(EXTRA_SUCURSAL_CIUDAD,city);
         data.putExtra(EXTRA_SUCURSAL_PAIS,country);
+
+
+        int id = getIntent().getIntExtra(EXTRA_SUCURSAL_ID,-1);
+
+        if(id != -1){
+            data.putExtra(EXTRA_SUCURSAL_ID,id);
+        }
 
         setResult(RESULT_OK,data);
         finish();

@@ -28,6 +28,9 @@ public class SucursalViewModel extends AndroidViewModel {
     public void delete(Sucursal sucursal){
         mRepository.deleteSucursal(sucursal);
     }
+    public void update(Sucursal sucursal){
+        mRepository.updateSucursal(sucursal);
+    }
     public void deleteAllSucursales(){
         mRepository.deleteAllSucursales();
     }
