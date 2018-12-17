@@ -161,6 +161,7 @@ public class UserRegisterActivity extends AppCompatActivity {
         if(name.trim().isEmpty() ||
                 email.trim().isEmpty() ||
                 rfc.trim().isEmpty() ||
+                rfc.trim().length() >= 12 ||
                 company_name.trim().isEmpty() ||
                 password.trim().isEmpty() ||
                 password_confirmation.trim().isEmpty()
@@ -193,6 +194,7 @@ public class UserRegisterActivity extends AppCompatActivity {
         if(name.trim().isEmpty() ||
                 email.trim().isEmpty() ||
                 rfc.trim().isEmpty() ||
+                rfc.trim().length() >= 12 ||
                 company_name.trim().isEmpty() ||
                 password.trim().isEmpty() ||
                 password_confirmation.trim().isEmpty()
