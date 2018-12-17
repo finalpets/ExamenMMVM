@@ -3,6 +3,7 @@ package com.peterleyva.examenmvvm.activities;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -12,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -208,6 +210,26 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
             drawer.closeDrawer(GravityCompat.START);
         }
         else
-        super.onBackPressed();
+        {
+            // Instantiate an AlertDialog.Builder with its constructor
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            // Chain together various setter methods to set the dialog characteristics
+            builder.setTitle("Log Out?");
+            // Add the buttons
+            builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User clicked OK button
+                    finish();
+                }
+            });
+            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User cancelled the dialog
+                }
+            });
+            // Get the AlertDialog from create()
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
     }
 }
