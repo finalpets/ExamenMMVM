@@ -27,8 +27,11 @@ import com.google.android.material.snackbar.Snackbar;
 import com.peterleyva.examenmvvm.MainActivity;
 import com.peterleyva.examenmvvm.R;
 import com.peterleyva.examenmvvm.adapters.SucursalAdapter;
+import com.peterleyva.examenmvvm.dao.EmployeeDao;
+import com.peterleyva.examenmvvm.model.Employee;
 import com.peterleyva.examenmvvm.model.Sucursal;
 import com.peterleyva.examenmvvm.model.User;
+import com.peterleyva.examenmvvm.viewmodel.EmployeeViewModel;
 import com.peterleyva.examenmvvm.viewmodel.SucursalViewModel;
 import com.peterleyva.examenmvvm.viewmodel.UserViewModel;
 
@@ -38,6 +41,7 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
 
     private DrawerLayout drawer;
     private SucursalViewModel sucursalViewModel;
+    private EmployeeViewModel employeeViewModel;
     private UserViewModel userViewModel;
     View headerView;
     TextView textview_navheader_userName;
@@ -45,6 +49,7 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
     private int userId;
 
     public final static int NEW_SUCURSAL_REQUEST = 1;
+    public final static int NEW_EMPLOYEE_REQUEST = 2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +92,7 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
         recyclerView.setAdapter(adapter);
 
         sucursalViewModel = ViewModelProviders.of(this).get(SucursalViewModel.class);
+        employeeViewModel = ViewModelProviders.of(this).get(EmployeeViewModel.class);
 
         Intent intent = getIntent();
         if(intent.hasExtra(MainActivity.EXTRA_ID))
@@ -157,7 +163,8 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
                 break;
             case R.id.nav_register_empleado:
                 intent = new Intent(AdministratorActivity.this,EmployeeRegisterActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent,NEW_EMPLOYEE_REQUEST);
+                //startActivity(intent);
                 break;
             case R.id.nav_logout:
                 finish();
@@ -199,8 +206,20 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
             Toast.makeText(this, "Register Success", Toast.LENGTH_SHORT).show();
 
         }
-        else {
-            Toast.makeText(this, "User not Saved", Toast.LENGTH_SHORT).show();
+        else
+        if(requestCode ==  NEW_EMPLOYEE_REQUEST && resultCode == RESULT_OK){
+
+            String name = data.getStringExtra(EmployeeRegisterActivity.EXTRA_EMPLOYEE_NAME);
+            String rfc = data.getStringExtra(EmployeeRegisterActivity.EXTRA_EMPLOYEE_RFC);
+            String puesto = data.getStringExtra(EmployeeRegisterActivity.EXTRA_EMPLOYEE_PUESTO);
+            int sucursalId = data.getIntExtra(EmployeeRegisterActivity.EXTRA_EMPLOYEE_SUCURSAL_ID,0);
+
+            Employee employee = new Employee(sucursalId,name,rfc,puesto);
+
+            employeeViewModel.insert(employee);
+
+
+
         }
     }
 

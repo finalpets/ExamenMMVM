@@ -28,20 +28,29 @@
         android:orientation="vertical"
         android:padding="16dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
         <EditText
             android:id="@+id/edittext_employeeRegister_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nombre"
             android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
         <EditText
             android:id="@+id/edittext_employeeRegister_rfc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="RFC"
             android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,13 +68,17 @@
                 android:layout_height="wrap_content"/>
 
         </LinearLayout>
-
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
         <EditText
             android:id="@+id/edittext_employeeRegister_puesto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nombre del Puesto"
             android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
         <!--<LinearLayout-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content"-->
