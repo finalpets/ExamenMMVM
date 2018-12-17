@@ -47,6 +47,7 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
     TextView textview_navheader_userName;
     TextView textview_navheader_companyName;
     private int userId;
+    private int TOTAL_SUCURSALES =-1;
 
     public final static int NEW_SUCURSAL_REQUEST = 1;
     public final static int NEW_EMPLOYEE_REQUEST = 2;
@@ -106,6 +107,8 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
             @Override
             public void onChanged(List<Sucursal> sucursals) {
 
+
+                TOTAL_SUCURSALES = sucursals.size();
                 adapter.setSucursals(sucursals);
 
 
@@ -194,14 +197,23 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
                 break;
 
             case R.id.nav_register_sucursal:
-                intent = new Intent(AdministratorActivity.this,NewEditSucursalAcivity.class);
-                startActivityForResult(intent,NEW_SUCURSAL_REQUEST);
+                    intent = new Intent(AdministratorActivity.this, NewEditSucursalAcivity.class);
+                    startActivityForResult(intent, NEW_SUCURSAL_REQUEST);
+
                 //startActivity(intent);
                 //sucursalViewModel.insert(new Sucursal("Gameloft","Madero","Nueva",1020,21396,"Mexicali","Mexico",userId));
                 break;
             case R.id.nav_register_empleado:
-                intent = new Intent(AdministratorActivity.this,EmployeeRegisterActivity.class);
-                startActivityForResult(intent,NEW_EMPLOYEE_REQUEST);
+                if(TOTAL_SUCURSALES > 0) {
+                    intent = new Intent(AdministratorActivity.this, EmployeeRegisterActivity.class);
+                    startActivityForResult(intent, NEW_EMPLOYEE_REQUEST);
+                }
+                else {
+
+                    View contextView = findViewById(R.id.coordinator_administrator);
+                    Snackbar snackbar = Snackbar.make(contextView, "Create New Sucursal First", Snackbar.LENGTH_SHORT);
+                    snackbar.show();
+                }
                 //startActivity(intent);
                 break;
             case R.id.nav_logout:
