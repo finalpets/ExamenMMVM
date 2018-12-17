@@ -44,14 +44,14 @@ public class EmployeeRegisterActivity extends AppCompatActivity {
         edittext_employeeRegister_puesto = findViewById(R.id.edittext_employeeRegister_puesto);
         spinner =findViewById(R.id.spinner_employee_sucursal);
 
-        Button button_employeeRegister_back = findViewById(R.id.button_employeeRegister_back);
+        //Button button_employeeRegister_back = findViewById(R.id.button_employeeRegister_back);
 
-        button_employeeRegister_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+//        button_employeeRegister_back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                finish();
+//            }
+//        });
 
         sucursalViewModel = ViewModelProviders.of(this).get(SucursalViewModel.class);
 
