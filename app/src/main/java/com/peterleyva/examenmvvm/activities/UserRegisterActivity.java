@@ -124,14 +124,14 @@ public class UserRegisterActivity extends AppCompatActivity {
 
         button_userRegister_register = findViewById(R.id.button_userRegister_register);
         button_userRegister_register.setEnabled(false);
-        button_userRegister_back = findViewById(R.id.button_userRegister_back);
-
-        button_userRegister_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+//        button_userRegister_back = findViewById(R.id.button_userRegister_back);
+//
+//        button_userRegister_back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
 
         button_userRegister_register.setOnClickListener(new View.OnClickListener() {
             @Override
