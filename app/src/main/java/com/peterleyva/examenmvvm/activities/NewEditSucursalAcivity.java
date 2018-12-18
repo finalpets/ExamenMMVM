@@ -293,5 +293,7 @@ public class NewEditSucursalAcivity extends AppCompatActivity {
             AlertDialog dialog = builder.create();
             dialog.show();
         }
+        else
+        super.onBackPressed();
     }
 }
