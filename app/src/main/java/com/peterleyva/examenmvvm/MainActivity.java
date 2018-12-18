@@ -2,22 +2,22 @@ package com.peterleyva.examenmvvm;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
+import androidx.appcompat.widget.AppCompatCheckBox;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.peterleyva.examenmvvm.activities.AdministratorActivity;
 import com.peterleyva.examenmvvm.activities.UserRegisterActivity;
 import com.peterleyva.examenmvvm.model.User;
@@ -28,6 +28,11 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private final String PREFERENCES_REMEMBER = "PREFERENCES_REMEMBER";
+    private final String PREFERENCES_EMAIL = "PREFERENCES_EMAIL";
+    private final String PREFERENCES_PASSWORD = "PREFERENCES_PASSWORD";
+    private boolean remember = false;
+
     public final static int ADD_USER_REQUEST = 1;
     public static final String EXTRA_ID =
             "com.peterleyva.examenmvvm.EXTRA_ID";
@@ -35,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     private UserViewModel userViewModel;
     private EditText edittext_main_email;
     private EditText edittext_main_password;
+
+    private AppCompatCheckBox checkbox_main;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         edittext_main_email = findViewById(R.id.edittext_main_email);
         edittext_main_password = findViewById(R.id.edittext_main_password);
 
+
+
         button_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,7 +65,19 @@ public class MainActivity extends AppCompatActivity {
 
                         if(user != null) {
                             Intent intent = new Intent(MainActivity.this, AdministratorActivity.class);
+                            if(isRemember())
+                            {
+                                saveEmail(user.getEmail());
+                                savePassword(user.getPassword());
+                            }
+                            else
+                            {
+                                saveEmail("");
+                                savePassword("");
 
+                                edittext_main_email.setText("");
+                                edittext_main_password.setText("");
+                            }
                             intent.putExtra(EXTRA_ID, user.getId());
                             startActivity(intent);
                         }
@@ -67,6 +88,18 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+
+
+        checkbox_main = findViewById(R.id.checkbox_main);
+        checkbox_main.setChecked(isRemember());
+        checkbox_main.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                saveRemember(isChecked);
+
+            }
+        });
+
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -96,9 +129,71 @@ public class MainActivity extends AppCompatActivity {
             public void onChanged(List<User> users) {
                 //update RecyclerView
                 //adapter.setUsers(users); //coment users Recyclerview
-                Toast.makeText(MainActivity.this, "onChange", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(MainActivity.this, "onChange", Toast.LENGTH_SHORT).show();
             }
         });
+        if(isRemember()){
+            edittext_main_email.setText(getEmail());
+            edittext_main_password.setText(getPassword());
+        }
+    }
+
+    public boolean isRemember(){
+
+        SharedPreferences sharedpreferences = getSharedPreferences(PREFERENCES_REMEMBER, MODE_PRIVATE);
+
+        remember = sharedpreferences.getBoolean(PREFERENCES_REMEMBER, false);
+        return remember;
+    }
+
+    public void saveRemember(boolean isChecked){
+
+        SharedPreferences sharedpreferences = getSharedPreferences(PREFERENCES_REMEMBER, MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+
+        editor.putBoolean(PREFERENCES_REMEMBER, isChecked);
+        editor.commit();
+        
+        //saveEmail();
+        //savePassword();
+
+    }
+
+    private void savePassword(String password) {
+        SharedPreferences sharedpreferences = getSharedPreferences(PREFERENCES_PASSWORD, MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+
+        editor.putString(PREFERENCES_PASSWORD, password);
+        editor.commit();
+    }
+
+    private void saveEmail(String email) {
+        SharedPreferences sharedpreferences = getSharedPreferences(PREFERENCES_EMAIL, MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+
+        editor.putString(PREFERENCES_EMAIL, email);
+        editor.commit();
+    }
+
+    public String getEmail()
+    {
+
+        SharedPreferences sharedpreferences = getSharedPreferences(PREFERENCES_EMAIL, MODE_PRIVATE);
+
+        return sharedpreferences.getString(PREFERENCES_EMAIL,"");
+
+    }
+
+    public String getPassword()
+    {
+
+        SharedPreferences sharedpreferences = getSharedPreferences(PREFERENCES_PASSWORD, MODE_PRIVATE);
+
+        return sharedpreferences.getString(PREFERENCES_PASSWORD,"");
+
     }
 
     @Override
