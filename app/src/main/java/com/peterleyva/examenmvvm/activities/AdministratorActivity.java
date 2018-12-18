@@ -90,7 +90,7 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        final SucursalAdapter adapter = new SucursalAdapter();
+        final SucursalAdapter adapter = new SucursalAdapter(AdministratorActivity.this);
         recyclerView.setAdapter(adapter);
 
         sucursalViewModel = ViewModelProviders.of(this).get(SucursalViewModel.class);

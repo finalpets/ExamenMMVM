@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginEnd="8dp"
@@ -20,7 +21,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight=".8"
+            android:layout_weight=".6"
             >
             <TextView
                 android:id="@+id/textview_sucursal_name"
@@ -53,8 +54,8 @@
                 android:id="@+id/textview_sucursal_nEmpleados"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cant.Empleados"
-                android:textSize="12sp"
+                android:text="No.Empleados"
+                android:textSize="10sp"
                 />
 
             <TextView
@@ -65,6 +66,26 @@
                 android:text="10"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".2"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        >
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_itemSucursal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+            android:text="Edit"
+            android:textSize="8dp"
+            app:cornerRadius="50dp"
+            app:iconGravity="start"
+            app:icon="@drawable/ic_edit"
+            app:iconPadding="8dp"
+            />
+    </LinearLayout>
 
 
 
