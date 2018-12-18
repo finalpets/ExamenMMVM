@@ -157,6 +157,7 @@
                 android:layout_height="wrap_content"
                 app:cornerRadius="50dp"
                 android:text="Registrar"
+                android:layout_marginBottom="300dp"
                 />
         <!--</LinearLayout>-->
 
