@@ -148,15 +148,15 @@ public class AdministratorActivity extends AppCompatActivity implements Navigati
         adapter.setOnItemClickListener(new SucursalAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Sucursal sucursal) {
-                Intent intent = new Intent(AdministratorActivity.this,NewEditSucursalAcivity.class);
-                intent.putExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_ID,sucursal.getId());
-                intent.putExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_NAME,sucursal.getName());
-                intent.putExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_ADDRESS,sucursal.getAdress());
-                intent.putExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_CIUDAD,sucursal.getCity());
-                intent.putExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_CODIGOPOSTAL,sucursal.getPostal_codel());
-                intent.putExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_COLONIA,sucursal.getColonial());
-                intent.putExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_NUMEROEXTERIOR,sucursal.getNumber());
-                intent.putExtra(NewEditSucursalAcivity.EXTRA_SUCURSAL_PAIS,sucursal.getCountry());
+                Intent intent = new Intent(AdministratorActivity.this,SucursalDetailsActivity.class);
+                intent.putExtra(SucursalDetailsActivity.EXTRA_SUCURSAL_ID,sucursal.getId());
+                intent.putExtra(SucursalDetailsActivity.EXTRA_SUCURSAL_NAME,sucursal.getName());
+                intent.putExtra(SucursalDetailsActivity.EXTRA_SUCURSAL_ADDRESS,sucursal.getAdress());
+                intent.putExtra(SucursalDetailsActivity.EXTRA_SUCURSAL_CIUDAD,sucursal.getCity());
+                intent.putExtra(SucursalDetailsActivity.EXTRA_SUCURSAL_CODIGOPOSTAL,sucursal.getPostal_codel());
+                intent.putExtra(SucursalDetailsActivity.EXTRA_SUCURSAL_COLONIA,sucursal.getColonial());
+                intent.putExtra(SucursalDetailsActivity.EXTRA_SUCURSAL_NUMEROEXTERIOR,sucursal.getNumber());
+                intent.putExtra(SucursalDetailsActivity.EXTRA_SUCURSAL_PAIS,sucursal.getCountry());
                 startActivityForResult(intent,EDIT_SUCURSAL_REQUEST);
 
             }

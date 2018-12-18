@@ -11,8 +11,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="stateHidden"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,17 +23,27 @@
         <activity
             android:name=".activities.UserRegisterActivity"
             android:launchMode="singleTop"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".activities.AdministratorActivity"
             android:launchMode="singleTop"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.StatusBar" />
         <activity
             android:name=".activities.NewEditSucursalAcivity"
             android:launchMode="singleTop"
+            android:screenOrientation="portrait"
             android:parentActivityName=".activities.AdministratorActivity" />
-        <activity android:name=".activities.EmployeeRegisterActivity"
+        <activity
+            android:name=".activities.EmployeeRegisterActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"
+            android:parentActivityName=".activities.AdministratorActivity" />
+        <activity android:name=".activities.SucursalDetailsActivity"
             android:parentActivityName=".activities.AdministratorActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
             />
     </application>
 

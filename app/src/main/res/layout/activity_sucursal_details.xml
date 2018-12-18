@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.SucursalDetailsActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:elevation="4dp"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:title="Sucursal Details" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:id="@+id/view_layout"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_sucursal"
+                    android:text="Nombre:"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    />
+                <TextView
+                    android:id="@+id/textview_sucursalDetails_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre Sucrusal"
+                    android:textSize="14sp"
+                    />
+
+
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_address"
+                android:text="Address:"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                />
+            <TextView
+                android:id="@+id/textview_sucursalDetails_adress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:textSize="14sp"
+                />
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Colonia:"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    />
+
+            <TextView
+                android:id="@+id/textview_sucursalDetails_colonia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre Colonia"
+                android:textSize="12sp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:text="Numero Exterior:"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:padding="10dp"
+                />
+                <TextView
+                    android:id="@+id/textview_sucursalDetails_numeroExterior"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:text="0"
+                    android:selectAllOnFocus="true"
+                    />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:text="Codigo Postal:"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:padding="10dp"
+                />
+                <TextView
+                    android:id="@+id/textview_sucursalDetails_postalCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:text="0"
+                    android:selectAllOnFocus="true"
+                    />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ciudad"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:drawableLeft="@drawable/ic_location_city"
+                    />
+            <TextView
+                android:id="@+id/textview_sucursalDetails_ciudad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre Ciudad"
+                android:textSize="12sp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pais:"
+                    android:drawableLeft="@drawable/ic_city"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    />
+            <TextView
+                android:id="@+id/textview_sucursalDetails_pais"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre Pais"
+                />
+        </LinearLayout>
+
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal"
+            android:padding="16dp"-->
+            <!--&gt;-->
+
+
+            <!--<Button-->
+            <!--android:id="@+id/button_sucursalDetails_back"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Cancel"-->
+            <!--/>-->
+            <!--<Button-->
+                <!--android:id="@+id/button_sucursalDetails_register"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--app:cornerRadius="50dp"-->
+                <!--android:text="New Employee"-->
+                <!--android:layout_marginBottom="300dp"-->
+                <!--/>-->
+
+
+            <!--</LinearLayout>-->
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_new_employee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:src="@drawable/ic_add"
+        app:layout_anchor="@id/view_layout"
+        app:backgroundTint="@color/colorAccent"
+        app:layout_anchorGravity="bottom|end"
+        />
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
